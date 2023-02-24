@@ -2,6 +2,7 @@ import { TodoListView } from "./view.js";
 import { DataStructure } from "./Datastructure.js";
 import { CloudStorage, URL } from "./Cloud-Store.js";
 import { LocalStore , setTodo} from "./Local-Store.js";
+import { checkEventCloud , checkEventLocal, selectMethod } from "./controller_dependencies.js";
 const todoInput = document.querySelector(".todoInput") as HTMLInputElement;
 const select = document.querySelector(".select") as HTMLSelectElement;
 const addBtn = document.querySelector(".addBtn") as HTMLButtonElement;
@@ -26,28 +27,6 @@ todoInput.addEventListener("keypress", function (event) {
     }
   }
 });
-
-function checkEventLocal(checkText : HTMLSpanElement, display : string , status : boolean, Text : string, todolist : Array<objectType> ) {
-  checkText.style.textDecoration = display;
-  for (let i = 0; i < todolist.length; i++) {
-    if (todolist[i].name === Text) {
-      editTodoItem(i, new DataStructure(todolist[i].name, status) as objectType, todolist);
-    }
-  }
-}
-
-async function selectMethod(method : Promise<objectType> | Function) {
-  const array : unknown = await method;
-  todoContainer.innerHTML = "";
-  (array as Array<objectType>).map((obj) => {
-    addEvent(obj);
-  });
-}
-
-async function checkEventCloud(checkText : HTMLSpanElement, display : string, id : string , Text : string, status? : boolean) {
-  checkText.style.textDecoration = display;
-  await editTodo(id, Text, status);
-}
 
 export function controller() {
   return {

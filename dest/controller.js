@@ -11,6 +11,7 @@ import { TodoListView } from "./view.js";
 import { DataStructure } from "./Datastructure.js";
 import { CloudStorage, URL } from "./Cloud-Store.js";
 import { LocalStore, setTodo } from "./Local-Store.js";
+import { checkEventCloud, checkEventLocal, selectMethod } from "./controller_dependencies.js";
 const todoInput = document.querySelector(".todoInput");
 const select = document.querySelector(".select");
 const addBtn = document.querySelector(".addBtn");
@@ -28,29 +29,6 @@ todoInput.addEventListener("keypress", function (event) {
         }
     }
 });
-function checkEventLocal(checkText, display, status, Text, todolist) {
-    checkText.style.textDecoration = display;
-    for (let i = 0; i < todolist.length; i++) {
-        if (todolist[i].name === Text) {
-            editTodoItem(i, new DataStructure(todolist[i].name, status), todolist);
-        }
-    }
-}
-function selectMethod(method) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const array = yield method;
-        todoContainer.innerHTML = "";
-        array.map((obj) => {
-            addEvent(obj);
-        });
-    });
-}
-function checkEventCloud(checkText, display, id, Text, status) {
-    return __awaiter(this, void 0, void 0, function* () {
-        checkText.style.textDecoration = display;
-        yield editTodo(id, Text, status);
-    });
-}
 export function controller() {
     return {
         deleteEvent: function (deleteBtn, delId) {
@@ -72,7 +50,7 @@ export function controller() {
                 }
             });
         },
-        editEvent: function (editBtn, editId) {     
+        editEvent: function (editBtn, editId) {
             const editBn = editBtn.parentNode;
             const edittext = editBn.firstChild.innerText;
             todoInput.value = edittext;
