@@ -1,8 +1,8 @@
-import { todoContainer , objectType } from "./controller";
-import { LocalStore } from "./Local-Store";
-import { CloudStorage } from "./Cloud-Store";
-import { DataStructure } from "./Datastructure";
-import { TodoListView } from "./view";
+import { todoContainer , objectType } from "./controller.js";
+import { LocalStore } from "./Local-Store.js";
+import { CloudStorage } from "./Cloud-Store.js";
+import { DataStructure } from "./Datastructure.js";
+import { TodoListView } from "./view.js";
 
 function checkEventLocal(checkText : HTMLSpanElement, display : string , status : boolean, Text : string, todolist : Array<objectType> ) {
     checkText.style.textDecoration = display;

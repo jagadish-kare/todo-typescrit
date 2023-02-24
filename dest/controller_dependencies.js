@@ -7,11 +7,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { todoContainer } from "./controller";
-import { LocalStore } from "./Local-Store";
-import { CloudStorage } from "./Cloud-Store";
-import { DataStructure } from "./Datastructure";
-import { TodoListView } from "./view";
+import { todoContainer } from "./controller.js";
+import { LocalStore } from "./Local-Store.js";
+import { CloudStorage } from "./Cloud-Store.js";
+import { DataStructure } from "./Datastructure.js";
+import { TodoListView } from "./view.js";
 function checkEventLocal(checkText, display, status, Text, todolist) {
     checkText.style.textDecoration = display;
     for (let i = 0; i < todolist.length; i++) {
